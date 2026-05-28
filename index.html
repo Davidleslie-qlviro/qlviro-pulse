@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Qlviro Pulse — Creator Screener</title>
+  <meta name="description" content="7-filter creator screener. Hand in a handle, get a verdict." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Playfair Display"', 'ui-serif', 'Georgia', 'serif'],
+            mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+          },
+          colors: {
+            qlv: {
+              bg:     '#0a1628',
+              panel:  '#111d2f',
+              border: '#1f3050',
+              dim:    '#5e7591',
+              text:   '#e5edf5',
+              blue:   '#1e90ff',
+              cyan:   '#38bdf8',
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(30, 144, 255, 0.18), transparent 60%),
+        radial-gradient(ellipse 60% 40% at 10% 100%, rgba(56, 189, 248, 0.06), transparent 60%),
+        #0a1628;
+      min-height: 100vh;
+      color: #e5edf5;
+    }
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(30, 144, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30, 144, 255, 0.06) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(ellipse 70% 50% at 50% 30%, black, transparent 80%);
+    }
+    .heartbeat { animation: heartbeat 1.4s ease-in-out infinite; }
+    @keyframes heartbeat {
+      0%, 100% { opacity: 0.35; transform: scale(1); }
+      50%       { opacity: 1;    transform: scale(1.15); }
+    }
+    .ring-glow {
+      animation: ringGlow 3s ease-in-out infinite;
+    }
+    @keyframes ringGlow {
+      0%, 100% { opacity: 0.4; }
+      50%       { opacity: 0.9; }
+    }
+    .fade-up { animation: fadeUp 0.4s ease-out both; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Qlviro bolt mark */
+    .bolt-mark {
+      filter: drop-shadow(0 0 8px rgba(30, 144, 255, 0.5));
+    }
+  </style>
+</head>
+<body>
+
+  <div class="fixed inset-0 grid-bg pointer-events-none"></div>
+
+  <main class="relative max-w-2xl mx-auto px-6 py-16 sm:py-24">
+
+    <!-- Header -->
+    <header class="mb-12 sm:mb-16">
+
+      <!-- Qlviro brand stamp -->
+      <div class="flex items-center gap-3 mb-8">
+        <svg class="bolt-mark" width="28" height="28" viewBox="-15 -15 30 30" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="0" cy="0" r="13" fill="none" stroke="#1e90ff" stroke-width="1.5"/>
+          <path d="M -4,-9 L 5,-1 L 1,-1 L 4,9 L -5,1 L -1,1 Z" fill="#1e90ff"/>
+        </svg>
+        <div class="leading-tight">
+          <div class="font-mono text-xs tracking-[0.25em] text-qlv-text">QLVIRO</div>
+          <div class="font-mono text-[10px] tracking-[0.2em] text-qlv-cyan">AI FRONT OFFICE SYSTEM</div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2 mb-6 text-xs uppercase tracking-[0.2em] text-qlv-dim font-mono">
+        <span class="w-1.5 h-1.5 rounded-full bg-qlv-blue heartbeat"></span>
+        Pulse v1 · Creator Screener
+      </div>
+
+      <h1 class="font-serif text-5xl sm:text-6xl leading-[1.05] tracking-tight">
+        Read the <em class="text-qlv-blue">pulse</em><br/>before you pitch.
+      </h1>
+      <p class="text-qlv-dim mt-5 max-w-md leading-relaxed">
+        A 7-filter screener for service-business creators. Hand in a handle,
+        get a verdict in seconds.
+      </p>
+    </header>
+
+    <!-- Input -->
+    <section class="mb-12">
+      <label for="handle" class="block text-xs uppercase tracking-[0.2em] text-qlv-dim font-mono mb-2">
+        Creator handle
+      </label>
+      <div class="flex flex-col sm:flex-row gap-2">
+        <input
+          id="handle"
+          type="text"
+          autocomplete="off"
+          spellcheck="false"
+          placeholder="@nursejanetg"
+          class="flex-1 bg-qlv-panel border border-qlv-border rounded-md px-4 py-3.5 text-base font-mono placeholder:text-qlv-dim/60 text-qlv-text focus:outline-none focus:border-qlv-blue focus:ring-1 focus:ring-qlv-blue/40 transition-colors"
+        />
+        <button
+          id="run"
+          class="bg-qlv-blue hover:bg-[#3aa0ff] active:bg-[#0d6efd] disabled:bg-qlv-border disabled:text-qlv-dim disabled:cursor-not-allowed text-white font-semibold tracking-wide px-7 py-3.5 rounded-md transition-colors shadow-[0_0_20px_rgba(30,144,255,0.25)] hover:shadow-[0_0_30px_rgba(30,144,255,0.4)]"
+        >
+          Screen
+        </button>
+      </div>
+      <p class="text-qlv-dim/70 text-xs mt-2 font-mono">
+        Try: @nursejanetg · @realestaterood
+      </p>
+    </section>
+
+    <!-- Status / loader -->
+    <div id="status" class="hidden mb-8 fade-up">
+      <div class="flex items-center gap-3 text-qlv-dim font-mono text-sm border border-qlv-border rounded-md bg-qlv-panel/50 px-4 py-3">
+        <span class="w-2 h-2 rounded-full bg-qlv-blue heartbeat"></span>
+        <span id="status-text">Researching creator across platforms…</span>
+      </div>
+    </div>
+
+    <!-- Result -->
+    <div id="result" class="hidden"></div>
+
+    <!-- Footer -->
+    <footer class="mt-24 pt-8 border-t border-qlv-border text-qlv-dim/60 text-xs font-mono">
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        <span>Powered by Claude Haiku 4.5</span>
+        <span>qlviro.com</span>
+      </div>
+    </footer>
+
+  </main>
+
+  <script>
+    const $handle  = document.getElementById('handle');
+    const $run     = document.getElementById('run');
+    const $status  = document.getElementById('status');
+    const $statusText = document.getElementById('status-text');
+    const $result  = document.getElementById('result');
+
+    const FILTERS = [
+      ['engagement',       'Engagement',       'Likes + comments ÷ followers'],
+      ['pain_signal',      'Pain signal',      'Comment language = buying intent'],
+      ['pay_capacity',     'Pay capacity',     'Audience location + niche economy'],
+      ['niche_clarity',    'Niche clarity',    'Bio + posts tell ONE story'],
+      ['active_monetiser', 'Active monetiser', 'Linktree, products, community'],
+      ['posting_cadence',  'Posting cadence',  '2× per week minimum'],
+      ['qlviro_fit',       'Qlviro fit',       'Service-business operator audience'],
+    ];
+
+    const VERDICT = {
+      PASS:  { dot: 'bg-emerald-400', label: 'text-emerald-400', glyph: '🟢', strap: 'Ship the audit. This is a buyer.' },
+      MAYBE: { dot: 'bg-yellow-400',  label: 'text-yellow-400',  glyph: '🟡', strap: 'Borderline. Look at the breakdown.' },
+      KILL:  { dot: 'bg-red-400',     label: 'text-red-400',     glyph: '🔴', strap: 'Skip. Spend the energy elsewhere.' },
+    };
+
+    const LOADING_LINES = [
+      'Researching creator across platforms…',
+      'Reading the comment section…',
+      'Sniffing for monetisation signals…',
+      'Sizing the audience economy…',
+      'Tallying the 7 filters…',
+    ];
+
+    let loadingTimer = null;
+    function startLoading() {
+      let i = 0;
+      $statusText.textContent = LOADING_LINES[0];
+      loadingTimer = setInterval(() => {
+        i = (i + 1) % LOADING_LINES.length;
+        $statusText.textContent = LOADING_LINES[i];
+      }, 2200);
+    }
+    function stopLoading() {
+      if (loadingTimer) { clearInterval(loadingTimer); loadingTimer = null; }
+    }
+
+    async function screen() {
+      const handle = $handle.value.trim();
+      if (!handle) {
+        $handle.focus();
+        return;
+      }
+
+      $run.disabled = true;
+      $run.textContent = 'Screening…';
+      $result.classList.add('hidden');
+      $result.innerHTML = '';
+      $status.classList.remove('hidden');
+      startLoading();
+
+      try {
+        const res = await fetch('/api/screen', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ handle }),
+        });
+
+        const data = await res.json();
+        stopLoading();
+        $status.classList.add('hidden');
+
+        if (!res.ok || data.error) {
+          renderError(data.error || `Request failed (${res.status})`, data.raw);
+          return;
+        }
+
+        renderResult(data);
+      } catch (err) {
+        stopLoading();
+        $status.classList.add('hidden');
+        renderError(err.message || 'Network error');
+      } finally {
+        $run.disabled = false;
+        $run.textContent = 'Screen';
+      }
+    }
+
+    function renderError(msg, raw) {
+      $result.classList.remove('hidden');
+      $result.innerHTML = `
+        <div class="fade-up border border-red-500/30 bg-red-500/5 rounded-md p-5">
+          <div class="text-red-400 font-mono text-sm mb-1">ERROR</div>
+          <div class="text-qlv-text">${escapeHtml(msg)}</div>
+          ${raw ? `<details class="mt-3"><summary class="text-qlv-dim text-xs cursor-pointer font-mono">Raw model output</summary><pre class="mt-2 text-xs text-qlv-dim whitespace-pre-wrap font-mono">${escapeHtml(raw)}</pre></details>` : ''}
+        </div>`;
+    }
+
+    function renderResult(data) {
+      const v = VERDICT[data.verdict] || VERDICT.MAYBE;
+
+      const rows = FILTERS.map(([key, label, desc], idx) => {
+        const item = data.scores?.[key] || { score: 0, reasoning: '—' };
+        const dots = Array.from({ length: 5 }, (_, i) => `
+          <span class="w-1.5 h-4 rounded-sm ${i < item.score ? 'bg-qlv-blue shadow-[0_0_6px_rgba(30,144,255,0.6)]' : 'bg-qlv-border'}"></span>
+        `).join('');
+        return `
+          <div class="grid grid-cols-[1fr_auto] gap-3 py-4 border-t border-qlv-border first:border-t-0 fade-up" style="animation-delay:${idx * 50}ms">
+            <div class="min-w-0">
+              <div class="flex items-baseline gap-3 mb-1">
+                <span class="text-xs font-mono text-qlv-dim w-4">0${idx + 1}</span>
+                <span class="font-medium text-qlv-text">${label}</span>
+                <span class="text-qlv-dim/60 text-xs hidden sm:inline">· ${desc}</span>
+              </div>
+              <p class="text-qlv-dim text-sm leading-relaxed pl-7">${escapeHtml(item.reasoning || '—')}</p>
+            </div>
+            <div class="flex flex-col items-end gap-1.5 pt-0.5">
+              <div class="flex gap-0.5">${dots}</div>
+              <span class="font-mono text-xs text-qlv-dim">${item.score}/5</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      $result.classList.remove('hidden');
+      $result.innerHTML = `
+        <!-- Verdict card -->
+        <div class="fade-up border border-qlv-border rounded-md bg-qlv-panel overflow-hidden mb-6 shadow-[0_0_40px_rgba(30,144,255,0.08)]">
+          <div class="px-6 pt-6 pb-5 flex items-start justify-between gap-4 border-b border-qlv-border">
+            <div class="min-w-0">
+              <div class="text-qlv-dim text-xs font-mono uppercase tracking-[0.2em] mb-1">Verdict</div>
+              <div class="flex items-baseline gap-3 flex-wrap">
+                <span class="font-serif text-4xl ${v.label}">${v.glyph} ${data.verdict}</span>
+                <span class="text-qlv-dim font-mono text-sm truncate">${escapeHtml(data.handle || '')}</span>
+              </div>
+              <div class="text-qlv-dim text-sm mt-2">${v.strap}</div>
+            </div>
+            <div class="text-right shrink-0">
+              <div class="text-qlv-dim text-xs font-mono uppercase tracking-[0.2em] mb-1">Total</div>
+              <div class="font-mono text-4xl font-bold text-qlv-text leading-none">
+                ${data.total}<span class="text-qlv-dim text-2xl font-normal">/35</span>
+              </div>
+            </div>
+          </div>
+          <div class="px-6 py-3 flex items-center justify-between text-xs font-mono text-qlv-dim">
+            <span>Bands · 🔴 &lt;22 · 🟡 22–27 · 🟢 28+</span>
+            <button id="copy-json" class="hover:text-qlv-blue transition-colors">Copy JSON</button>
+          </div>
+        </div>
+
+        <!-- Filter breakdown -->
+        <div class="border border-qlv-border rounded-md bg-qlv-panel px-5 py-2">
+          ${rows}
+        </div>
+      `;
+
+      const $copy = document.getElementById('copy-json');
+      if ($copy) {
+        $copy.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(JSON.stringify(data, null, 2));
+            $copy.textContent = 'Copied ✓';
+            setTimeout(() => { $copy.textContent = 'Copy JSON'; }, 1500);
+          } catch {
+            $copy.textContent = 'Copy failed';
+          }
+        });
+      }
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    $run.addEventListener('click', screen);
+    $handle.addEventListener('keydown', (e) => { if (e.key === 'Enter') screen(); });
+    $handle.focus();
+  </script>
+</body>
+</html>

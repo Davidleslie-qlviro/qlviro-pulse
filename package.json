@@ -1,0 +1,13 @@
+{
+  "name": "qlviro-pulse",
+  "version": "1.0.0",
+  "description": "Qlviro Pulse — 7-filter creator screener. Hand in a handle, get a verdict.",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=20.x"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.32.0"
+  }
+}
