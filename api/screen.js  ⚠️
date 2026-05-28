@@ -163,6 +163,4 @@ Return the JSON scorecard. JSON only — no prose.`,
   }
 }
 
-export const config = {
-  maxDuration: 60,
-};
+export const maxDuration = 60;
