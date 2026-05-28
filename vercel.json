@@ -1,1 +1,7 @@
-{}
+{
+  "version": 2,
+  "builds": [
+    { "src": "api/screen.js", "use": "@vercel/node" },
+    { "src": "index.html", "use": "@vercel/static" }
+  ]
+}
