@@ -9,29 +9,30 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
     rel="stylesheet"
   />
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      darkMode: 'class',
       theme: {
         extend: {
           fontFamily: {
-            serif: ['"Playfair Display"', 'ui-serif', 'Georgia', 'serif'],
-            mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+            serif: ['"Fraunces"', 'Georgia', 'serif'],
+            sans:  ['"Inter"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            mono:  ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
           },
           colors: {
             qlv: {
-              bg:     '#0a1628',
-              panel:  '#111d2f',
-              border: '#1f3050',
-              dim:    '#5e7591',
-              text:   '#e5edf5',
-              blue:   '#1e90ff',
-              cyan:   '#38bdf8',
+              bg:     '#f5f1e8',
+              panel:  '#ffffff',
+              border: '#e4ddcf',
+              dim:    '#8a8578',
+              text:   '#1b2330',
+              body:   '#4b5563',
+              blue:   '#2563eb',
+              cyan:   '#3b82f6',
             },
           },
         },
@@ -41,43 +42,32 @@
 
   <style>
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
       background:
-        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(30, 144, 255, 0.18), transparent 60%),
-        radial-gradient(ellipse 60% 40% at 10% 100%, rgba(56, 189, 248, 0.06), transparent 60%),
-        #0a1628;
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(37, 99, 235, 0.07), transparent 60%),
+        #f5f1e8;
       min-height: 100vh;
-      color: #e5edf5;
+      color: #1b2330;
+      -webkit-font-smoothing: antialiased;
     }
     .grid-bg {
       background-image:
-        linear-gradient(rgba(30, 144, 255, 0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(30, 144, 255, 0.06) 1px, transparent 1px);
+        linear-gradient(rgba(37, 99, 235, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37, 99, 235, 0.05) 1px, transparent 1px);
       background-size: 40px 40px;
-      mask-image: radial-gradient(ellipse 70% 50% at 50% 30%, black, transparent 80%);
+      mask-image: radial-gradient(ellipse 70% 50% at 50% 20%, black, transparent 80%);
     }
     .heartbeat { animation: heartbeat 1.4s ease-in-out infinite; }
     @keyframes heartbeat {
-      0%, 100% { opacity: 0.35; transform: scale(1); }
-      50%       { opacity: 1;    transform: scale(1.15); }
-    }
-    .ring-glow {
-      animation: ringGlow 3s ease-in-out infinite;
-    }
-    @keyframes ringGlow {
-      0%, 100% { opacity: 0.4; }
-      50%       { opacity: 0.9; }
+      0%, 100% { opacity: 0.4; transform: scale(1); }
+      50%       { opacity: 1;   transform: scale(1.15); }
     }
     .fade-up { animation: fadeUp 0.4s ease-out both; }
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(8px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-
-    /* Qlviro bolt mark */
-    .bolt-mark {
-      filter: drop-shadow(0 0 8px rgba(30, 144, 255, 0.5));
-    }
+    .bolt-mark { filter: drop-shadow(0 1px 2px rgba(37, 99, 235, 0.25)); }
   </style>
 </head>
 <body>
@@ -92,12 +82,12 @@
       <!-- Qlviro brand stamp -->
       <div class="flex items-center gap-3 mb-8">
         <svg class="bolt-mark" width="28" height="28" viewBox="-15 -15 30 30" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="0" cy="0" r="13" fill="none" stroke="#1e90ff" stroke-width="1.5"/>
-          <path d="M -4,-9 L 5,-1 L 1,-1 L 4,9 L -5,1 L -1,1 Z" fill="#1e90ff"/>
+          <circle cx="0" cy="0" r="13" fill="none" stroke="#2563eb" stroke-width="1.5"/>
+          <path d="M -4,-9 L 5,-1 L 1,-1 L 4,9 L -5,1 L -1,1 Z" fill="#2563eb"/>
         </svg>
         <div class="leading-tight">
           <div class="font-mono text-xs tracking-[0.25em] text-qlv-text">QLVIRO</div>
-          <div class="font-mono text-[10px] tracking-[0.2em] text-qlv-cyan">AI FRONT OFFICE SYSTEM</div>
+          <div class="font-mono text-[10px] tracking-[0.2em] text-qlv-blue">AI FRONT OFFICE SYSTEM</div>
         </div>
       </div>
 
@@ -106,10 +96,10 @@
         Pulse v1 · Creator Screener
       </div>
 
-      <h1 class="font-serif text-5xl sm:text-6xl leading-[1.05] tracking-tight">
-        Read the <em class="text-qlv-blue">pulse</em><br/>before you pitch.
+      <h1 class="font-serif font-medium text-5xl sm:text-6xl leading-[1.02] tracking-tight text-qlv-text">
+        Read the <em class="text-qlv-blue not-italic font-medium" style="font-style:italic">pulse</em><br/>before you pitch.
       </h1>
-      <p class="text-qlv-dim mt-5 max-w-md leading-relaxed">
+      <p class="text-qlv-body mt-5 max-w-md leading-relaxed">
         A 7-filter screener for service-business creators. Hand in a handle,
         get a verdict in seconds.
       </p>
@@ -127,23 +117,23 @@
           autocomplete="off"
           spellcheck="false"
           placeholder="@nursejanetg"
-          class="flex-1 bg-qlv-panel border border-qlv-border rounded-md px-4 py-3.5 text-base font-mono placeholder:text-qlv-dim/60 text-qlv-text focus:outline-none focus:border-qlv-blue focus:ring-1 focus:ring-qlv-blue/40 transition-colors"
+          class="flex-1 bg-qlv-panel border border-qlv-border rounded-md px-4 py-3.5 text-base font-mono placeholder:text-qlv-dim/60 text-qlv-text focus:outline-none focus:border-qlv-blue focus:ring-1 focus:ring-qlv-blue/30 transition-colors"
         />
         <button
           id="run"
-          class="bg-qlv-blue hover:bg-[#3aa0ff] active:bg-[#0d6efd] disabled:bg-qlv-border disabled:text-qlv-dim disabled:cursor-not-allowed text-white font-semibold tracking-wide px-7 py-3.5 rounded-md transition-colors shadow-[0_0_20px_rgba(30,144,255,0.25)] hover:shadow-[0_0_30px_rgba(30,144,255,0.4)]"
+          class="bg-qlv-blue hover:bg-[#1d4ed8] active:bg-[#1e3a8a] disabled:bg-qlv-border disabled:text-qlv-dim disabled:cursor-not-allowed text-white font-semibold tracking-wide px-7 py-3.5 rounded-md transition-colors shadow-[0_4px_14px_rgba(37,99,235,0.25)] hover:shadow-[0_6px_20px_rgba(37,99,235,0.35)]"
         >
           Screen
         </button>
       </div>
-      <p class="text-qlv-dim/70 text-xs mt-2 font-mono">
+      <p class="text-qlv-dim text-xs mt-2 font-mono">
         Try: @nursejanetg · @realestaterood
       </p>
     </section>
 
     <!-- Status / loader -->
     <div id="status" class="hidden mb-8 fade-up">
-      <div class="flex items-center gap-3 text-qlv-dim font-mono text-sm border border-qlv-border rounded-md bg-qlv-panel/50 px-4 py-3">
+      <div class="flex items-center gap-3 text-qlv-body font-mono text-sm border border-qlv-border rounded-md bg-qlv-panel px-4 py-3">
         <span class="w-2 h-2 rounded-full bg-qlv-blue heartbeat"></span>
         <span id="status-text">Researching creator across platforms…</span>
       </div>
@@ -153,7 +143,7 @@
     <div id="result" class="hidden"></div>
 
     <!-- Footer -->
-    <footer class="mt-24 pt-8 border-t border-qlv-border text-qlv-dim/60 text-xs font-mono">
+    <footer class="mt-24 pt-8 border-t border-qlv-border text-qlv-dim text-xs font-mono">
       <div class="flex flex-wrap items-center justify-between gap-2">
         <span>Powered by Claude Haiku 4.5</span>
         <span>qlviro.com</span>
@@ -180,9 +170,9 @@
     ];
 
     const VERDICT = {
-      PASS:  { dot: 'bg-emerald-400', label: 'text-emerald-400', glyph: '🟢', strap: 'Ship the audit. This is a buyer.' },
-      MAYBE: { dot: 'bg-yellow-400',  label: 'text-yellow-400',  glyph: '🟡', strap: 'Borderline. Look at the breakdown.' },
-      KILL:  { dot: 'bg-red-400',     label: 'text-red-400',     glyph: '🔴', strap: 'Skip. Spend the energy elsewhere.' },
+      PASS:  { dot: 'bg-emerald-500', label: 'text-emerald-600', glyph: '🟢', strap: 'Ship the audit. This is a buyer.' },
+      MAYBE: { dot: 'bg-amber-500',   label: 'text-amber-600',   glyph: '🟡', strap: 'Borderline. Look at the breakdown.' },
+      KILL:  { dot: 'bg-red-500',     label: 'text-red-600',     glyph: '🔴', strap: 'Skip. Spend the energy elsewhere.' },
     };
 
     const LOADING_LINES = [
@@ -250,8 +240,8 @@
     function renderError(msg, raw) {
       $result.classList.remove('hidden');
       $result.innerHTML = `
-        <div class="fade-up border border-red-500/30 bg-red-500/5 rounded-md p-5">
-          <div class="text-red-400 font-mono text-sm mb-1">ERROR</div>
+        <div class="fade-up border border-red-300 bg-red-50 rounded-md p-5">
+          <div class="text-red-600 font-mono text-sm mb-1">ERROR</div>
           <div class="text-qlv-text">${escapeHtml(msg)}</div>
           ${raw ? `<details class="mt-3"><summary class="text-qlv-dim text-xs cursor-pointer font-mono">Raw model output</summary><pre class="mt-2 text-xs text-qlv-dim whitespace-pre-wrap font-mono">${escapeHtml(raw)}</pre></details>` : ''}
         </div>`;
@@ -263,7 +253,7 @@
       const rows = FILTERS.map(([key, label, desc], idx) => {
         const item = data.scores?.[key] || { score: 0, reasoning: '—' };
         const dots = Array.from({ length: 5 }, (_, i) => `
-          <span class="w-1.5 h-4 rounded-sm ${i < item.score ? 'bg-qlv-blue shadow-[0_0_6px_rgba(30,144,255,0.6)]' : 'bg-qlv-border'}"></span>
+          <span class="w-1.5 h-4 rounded-sm ${i < item.score ? 'bg-qlv-blue' : 'bg-qlv-border'}"></span>
         `).join('');
         return `
           <div class="grid grid-cols-[1fr_auto] gap-3 py-4 border-t border-qlv-border first:border-t-0 fade-up" style="animation-delay:${idx * 50}ms">
@@ -271,9 +261,9 @@
               <div class="flex items-baseline gap-3 mb-1">
                 <span class="text-xs font-mono text-qlv-dim w-4">0${idx + 1}</span>
                 <span class="font-medium text-qlv-text">${label}</span>
-                <span class="text-qlv-dim/60 text-xs hidden sm:inline">· ${desc}</span>
+                <span class="text-qlv-dim text-xs hidden sm:inline">· ${desc}</span>
               </div>
-              <p class="text-qlv-dim text-sm leading-relaxed pl-7">${escapeHtml(item.reasoning || '—')}</p>
+              <p class="text-qlv-body text-sm leading-relaxed pl-7">${escapeHtml(item.reasoning || '—')}</p>
             </div>
             <div class="flex flex-col items-end gap-1.5 pt-0.5">
               <div class="flex gap-0.5">${dots}</div>
@@ -286,15 +276,15 @@
       $result.classList.remove('hidden');
       $result.innerHTML = `
         <!-- Verdict card -->
-        <div class="fade-up border border-qlv-border rounded-md bg-qlv-panel overflow-hidden mb-6 shadow-[0_0_40px_rgba(30,144,255,0.08)]">
+        <div class="fade-up border border-qlv-border rounded-md bg-qlv-panel overflow-hidden mb-6 shadow-[0_8px_30px_rgba(20,30,50,0.06)]">
           <div class="px-6 pt-6 pb-5 flex items-start justify-between gap-4 border-b border-qlv-border">
             <div class="min-w-0">
               <div class="text-qlv-dim text-xs font-mono uppercase tracking-[0.2em] mb-1">Verdict</div>
               <div class="flex items-baseline gap-3 flex-wrap">
-                <span class="font-serif text-4xl ${v.label}">${v.glyph} ${data.verdict}</span>
+                <span class="font-serif font-medium text-4xl ${v.label}">${v.glyph} ${data.verdict}</span>
                 <span class="text-qlv-dim font-mono text-sm truncate">${escapeHtml(data.handle || '')}</span>
               </div>
-              <div class="text-qlv-dim text-sm mt-2">${v.strap}</div>
+              <div class="text-qlv-body text-sm mt-2">${v.strap}</div>
             </div>
             <div class="text-right shrink-0">
               <div class="text-qlv-dim text-xs font-mono uppercase tracking-[0.2em] mb-1">Total</div>
