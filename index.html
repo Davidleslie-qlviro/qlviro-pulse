@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Qlviro Pulse — Creator Screener</title>
-  <meta name="description" content="7-filter creator screener. Hand in a handle, get a verdict." />
+  <meta name="description" content="7-filter creator screener. Screen, save, and re-use results — no double-paying." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,70 +16,40 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            serif: ['"Fraunces"', 'Georgia', 'serif'],
-            sans:  ['"Inter"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-            mono:  ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
-          },
-          colors: {
-            qlv: {
-              bg:     '#f5f1e8',
-              panel:  '#ffffff',
-              border: '#e4ddcf',
-              dim:    '#8a8578',
-              text:   '#1b2330',
-              body:   '#4b5563',
-              blue:   '#2563eb',
-              cyan:   '#3b82f6',
-            },
-          },
+      theme: { extend: {
+        fontFamily: {
+          serif: ['"Fraunces"', 'Georgia', 'serif'],
+          sans:  ['"Inter"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+          mono:  ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
         },
-      },
+        colors: { qlv: {
+          bg:'#f5f1e8', panel:'#ffffff', border:'#e4ddcf', dim:'#8a8578',
+          text:'#1b2330', body:'#4b5563', blue:'#2563eb', cyan:'#3b82f6',
+        } },
+      } },
     };
   </script>
 
   <style>
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-      background:
-        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(37, 99, 235, 0.07), transparent 60%),
-        #f5f1e8;
-      min-height: 100vh;
-      color: #1b2330;
-      -webkit-font-smoothing: antialiased;
-    }
-    .grid-bg {
-      background-image:
-        linear-gradient(rgba(37, 99, 235, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(37, 99, 235, 0.05) 1px, transparent 1px);
-      background-size: 40px 40px;
-      mask-image: radial-gradient(ellipse 70% 50% at 50% 20%, black, transparent 80%);
-    }
+    body { font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+      background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(37,99,235,0.07), transparent 60%), #f5f1e8;
+      min-height:100vh; color:#1b2330; -webkit-font-smoothing:antialiased; }
+    .grid-bg { background-image: linear-gradient(rgba(37,99,235,0.05) 1px,transparent 1px), linear-gradient(90deg,rgba(37,99,235,0.05) 1px,transparent 1px);
+      background-size:40px 40px; mask-image:radial-gradient(ellipse 70% 50% at 50% 20%, black, transparent 80%); }
     .heartbeat { animation: heartbeat 1.4s ease-in-out infinite; }
-    @keyframes heartbeat {
-      0%, 100% { opacity: 0.4; transform: scale(1); }
-      50%       { opacity: 1;   transform: scale(1.15); }
-    }
-    .fade-up { animation: fadeUp 0.4s ease-out both; }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(8px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .bolt-mark { filter: drop-shadow(0 1px 2px rgba(37, 99, 235, 0.25)); }
+    @keyframes heartbeat { 0%,100%{opacity:.4;transform:scale(1)} 50%{opacity:1;transform:scale(1.15)} }
+    .fade-up { animation: fadeUp .4s ease-out both; }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
+    .bolt-mark { filter: drop-shadow(0 1px 2px rgba(37,99,235,0.25)); }
   </style>
 </head>
 <body>
 
   <div class="fixed inset-0 grid-bg pointer-events-none"></div>
 
-  <main class="relative max-w-2xl mx-auto px-6 py-16 sm:py-24">
+  <main class="relative max-w-3xl mx-auto px-6 py-16 sm:py-20">
 
-    <!-- Header -->
-    <header class="mb-12 sm:mb-16">
-
-      <!-- Qlviro brand stamp -->
+    <header class="mb-10">
       <div class="flex items-center gap-3 mb-8">
         <svg class="bolt-mark" width="28" height="28" viewBox="-15 -15 30 30" xmlns="http://www.w3.org/2000/svg">
           <circle cx="0" cy="0" r="13" fill="none" stroke="#2563eb" stroke-width="1.5"/>
@@ -97,52 +67,68 @@
       </div>
 
       <h1 class="font-serif font-medium text-5xl sm:text-6xl leading-[1.02] tracking-tight text-qlv-text">
-        Read the <em class="text-qlv-blue not-italic font-medium" style="font-style:italic">pulse</em><br/>before you pitch.
+        Read the <em class="text-qlv-blue" style="font-style:italic">pulse</em><br/>before you pitch.
       </h1>
-      <p class="text-qlv-body mt-5 max-w-md leading-relaxed">
-        A 7-filter screener for service-business creators. Hand in a handle,
-        get a verdict in seconds.
+      <p class="text-qlv-body mt-5 max-w-lg leading-relaxed">
+        A 7-filter screener for service-business creators. Screen one handle or a whole list —
+        every result is saved, so you never pay to screen the same handle twice.
       </p>
     </header>
 
-    <!-- Input -->
-    <section class="mb-12">
-      <label for="handle" class="block text-xs uppercase tracking-[0.2em] text-qlv-dim font-mono mb-2">
-        Creator handle
-      </label>
-      <div class="flex flex-col sm:flex-row gap-2">
-        <input
-          id="handle"
-          type="text"
-          autocomplete="off"
-          spellcheck="false"
-          placeholder="@nursejanetg"
-          class="flex-1 bg-qlv-panel border border-qlv-border rounded-md px-4 py-3.5 text-base font-mono placeholder:text-qlv-dim/60 text-qlv-text focus:outline-none focus:border-qlv-blue focus:ring-1 focus:ring-qlv-blue/30 transition-colors"
-        />
-        <button
-          id="run"
-          class="bg-qlv-blue hover:bg-[#1d4ed8] active:bg-[#1e3a8a] disabled:bg-qlv-border disabled:text-qlv-dim disabled:cursor-not-allowed text-white font-semibold tracking-wide px-7 py-3.5 rounded-md transition-colors shadow-[0_4px_14px_rgba(37,99,235,0.25)] hover:shadow-[0_6px_20px_rgba(37,99,235,0.35)]"
-        >
-          Screen
-        </button>
-      </div>
-      <p class="text-qlv-dim text-xs mt-2 font-mono">
-        Try: @nursejanetg · @realestaterood
-      </p>
-    </section>
-
-    <!-- Status / loader -->
-    <div id="status" class="hidden mb-8 fade-up">
-      <div class="flex items-center gap-3 text-qlv-body font-mono text-sm border border-qlv-border rounded-md bg-qlv-panel px-4 py-3">
-        <span class="w-2 h-2 rounded-full bg-qlv-blue heartbeat"></span>
-        <span id="status-text">Researching creator across platforms…</span>
-      </div>
+    <!-- Mode toggle -->
+    <div class="inline-flex bg-qlv-panel border border-qlv-border rounded-lg p-1 mb-6">
+      <button id="tab-single" class="px-5 py-2 rounded-md text-sm font-semibold transition-colors bg-qlv-text text-white">Single</button>
+      <button id="tab-batch"  class="px-5 py-2 rounded-md text-sm font-semibold transition-colors text-qlv-dim">Batch (list)</button>
     </div>
 
-    <!-- Result -->
-    <div id="result" class="hidden"></div>
+    <!-- SINGLE MODE -->
+    <section id="mode-single">
+      <label for="handle" class="block text-xs uppercase tracking-[0.2em] text-qlv-dim font-mono mb-2">Creator handle</label>
+      <div class="flex flex-col sm:flex-row gap-2">
+        <input id="handle" type="text" autocomplete="off" spellcheck="false" placeholder="@nursejanetg"
+          class="flex-1 bg-qlv-panel border border-qlv-border rounded-md px-4 py-3.5 text-base font-mono placeholder:text-qlv-dim/60 text-qlv-text focus:outline-none focus:border-qlv-blue focus:ring-1 focus:ring-qlv-blue/30 transition-colors" />
+        <button id="run" class="bg-qlv-blue hover:bg-[#1d4ed8] disabled:bg-qlv-border disabled:text-qlv-dim disabled:cursor-not-allowed text-white font-semibold tracking-wide px-7 py-3.5 rounded-md transition-colors shadow-[0_4px_14px_rgba(37,99,235,0.25)]">Screen</button>
+      </div>
+      <p class="text-qlv-dim text-xs mt-2 font-mono">Already screened a handle? It loads instantly, free.</p>
 
-    <!-- Footer -->
+      <div id="status" class="hidden mt-6">
+        <div class="flex items-center gap-3 text-qlv-body font-mono text-sm border border-qlv-border rounded-md bg-qlv-panel px-4 py-3">
+          <span class="w-2 h-2 rounded-full bg-qlv-blue heartbeat"></span>
+          <span id="status-text">Researching creator across platforms…</span>
+        </div>
+      </div>
+      <div id="result" class="hidden mt-6"></div>
+    </section>
+
+    <!-- BATCH MODE -->
+    <section id="mode-batch" class="hidden">
+      <label for="handles" class="block text-xs uppercase tracking-[0.2em] text-qlv-dim font-mono mb-2">Handles — one per line</label>
+      <textarea id="handles" rows="6" spellcheck="false" placeholder="@nursejanetg&#10;@realestaterood&#10;@another_creator"
+        class="w-full bg-qlv-panel border border-qlv-border rounded-md px-4 py-3.5 text-sm font-mono placeholder:text-qlv-dim/60 text-qlv-text focus:outline-none focus:border-qlv-blue focus:ring-1 focus:ring-qlv-blue/30 transition-colors resize-y"></textarea>
+      <div class="flex flex-wrap items-center gap-3 mt-3">
+        <button id="batch-run" class="bg-qlv-blue hover:bg-[#1d4ed8] disabled:bg-qlv-border disabled:text-qlv-dim disabled:cursor-not-allowed text-white font-semibold tracking-wide px-7 py-3 rounded-md transition-colors shadow-[0_4px_14px_rgba(37,99,235,0.25)]">Screen all</button>
+        <label class="flex items-center gap-2 text-qlv-body text-sm font-mono cursor-pointer">
+          <input id="batch-force" type="checkbox" class="accent-qlv-blue"> Re-screen saved ones (costs again)
+        </label>
+        <span id="batch-progress" class="text-qlv-dim font-mono text-sm"></span>
+      </div>
+      <p class="text-qlv-dim text-xs mt-2 font-mono">Saved handles load free. New ones screen one at a time (~30–60s each).</p>
+    </section>
+
+    <!-- SAVED RESULTS -->
+    <section id="saved-wrap" class="hidden mt-10">
+      <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+        <div class="text-xs uppercase tracking-[0.2em] text-qlv-dim font-mono">
+          Saved results · <span id="saved-count">0</span> / <span id="saved-max">250</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="export-csv" class="bg-qlv-panel border border-qlv-border hover:border-qlv-text text-qlv-text font-semibold text-sm px-4 py-2 rounded-md transition-colors">Export CSV</button>
+          <button id="clear-all" class="bg-qlv-panel border border-qlv-border hover:border-red-400 hover:text-red-600 text-qlv-dim font-semibold text-sm px-4 py-2 rounded-md transition-colors">Clear all</button>
+        </div>
+      </div>
+      <div id="saved-table" class="border border-qlv-border rounded-md bg-qlv-panel overflow-hidden"></div>
+    </section>
+
     <footer class="mt-24 pt-8 border-t border-qlv-border text-qlv-dim text-xs font-mono">
       <div class="flex flex-wrap items-center justify-between gap-2">
         <span>Powered by Claude Haiku 4.5</span>
@@ -153,184 +139,206 @@
   </main>
 
   <script>
-    const $handle  = document.getElementById('handle');
-    const $run     = document.getElementById('run');
-    const $status  = document.getElementById('status');
-    const $statusText = document.getElementById('status-text');
-    const $result  = document.getElementById('result');
+    // ===== CONFIG =====
+    const MAX_SAVED = 250;            // change this to raise/lower the saved-history cap
+    const STORE_KEY = 'qlviro_pulse_history';
 
+    // ===== shared data =====
     const FILTERS = [
-      ['engagement',       'Engagement',       'Likes + comments ÷ followers'],
-      ['pain_signal',      'Pain signal',      'Comment language = buying intent'],
-      ['pay_capacity',     'Pay capacity',     'Audience location + niche economy'],
-      ['niche_clarity',    'Niche clarity',    'Bio + posts tell ONE story'],
-      ['active_monetiser', 'Active monetiser', 'Linktree, products, community'],
-      ['posting_cadence',  'Posting cadence',  '2× per week minimum'],
-      ['qlviro_fit',       'Qlviro fit',       'Service-business operator audience'],
+      ['engagement','Engagement'],['pain_signal','Pain signal'],['pay_capacity','Pay capacity'],
+      ['niche_clarity','Niche clarity'],['active_monetiser','Active monetiser'],
+      ['posting_cadence','Posting cadence'],['qlviro_fit','Qlviro fit'],
     ];
-
-    const VERDICT = {
-      PASS:  { dot: 'bg-emerald-500', label: 'text-emerald-600', glyph: '🟢', strap: 'Ship the audit. This is a buyer.' },
-      MAYBE: { dot: 'bg-amber-500',   label: 'text-amber-600',   glyph: '🟡', strap: 'Borderline. Look at the breakdown.' },
-      KILL:  { dot: 'bg-red-500',     label: 'text-red-600',     glyph: '🔴', strap: 'Skip. Spend the energy elsewhere.' },
+    const FILTER_DESC = {
+      engagement:'Likes + comments ÷ followers', pain_signal:'Comment language = buying intent',
+      pay_capacity:'Audience location + niche economy', niche_clarity:'Bio + posts tell ONE story',
+      active_monetiser:'Linktree, products, community', posting_cadence:'2× per week minimum',
+      qlviro_fit:'Service-business operator audience',
     };
+    const VERDICT = {
+      PASS:{label:'text-emerald-600',glyph:'🟢',strap:'Ship the audit. This is a buyer.'},
+      MAYBE:{label:'text-amber-600',glyph:'🟡',strap:'Borderline. Look at the breakdown.'},
+      KILL:{label:'text-red-600',glyph:'🔴',strap:'Skip. Spend the energy elsewhere.'},
+    };
+    const sleep = ms => new Promise(r => setTimeout(r, ms));
+    const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+    const norm = h => String(h||'').trim().toLowerCase().replace(/^@+/,'');
 
-    const LOADING_LINES = [
-      'Researching creator across platforms…',
-      'Reading the comment section…',
-      'Sniffing for monetisation signals…',
-      'Sizing the audience economy…',
-      'Tallying the 7 filters…',
-    ];
-
-    let loadingTimer = null;
-    function startLoading() {
-      let i = 0;
-      $statusText.textContent = LOADING_LINES[0];
-      loadingTimer = setInterval(() => {
-        i = (i + 1) % LOADING_LINES.length;
-        $statusText.textContent = LOADING_LINES[i];
-      }, 2200);
+    // ===== storage (safe — degrades to in-memory if blocked) =====
+    let history = [];
+    function loadHistory(){
+      try{ const raw = localStorage.getItem(STORE_KEY); history = raw ? JSON.parse(raw) : []; }
+      catch(e){ history = []; }
+      if(!Array.isArray(history)) history = [];
     }
-    function stopLoading() {
-      if (loadingTimer) { clearInterval(loadingTimer); loadingTimer = null; }
+    function persist(){
+      try{ localStorage.setItem(STORE_KEY, JSON.stringify(history)); }catch(e){}
     }
-
-    async function screen() {
-      const handle = $handle.value.trim();
-      if (!handle) {
-        $handle.focus();
-        return;
-      }
-
-      $run.disabled = true;
-      $run.textContent = 'Screening…';
-      $result.classList.add('hidden');
-      $result.innerHTML = '';
-      $status.classList.remove('hidden');
-      startLoading();
-
-      try {
-        const res = await fetch('/api/screen', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ handle }),
-        });
-
-        const data = await res.json();
-        stopLoading();
-        $status.classList.add('hidden');
-
-        if (!res.ok || data.error) {
-          renderError(data.error || `Request failed (${res.status})`, data.raw);
-          return;
-        }
-
-        renderResult(data);
-      } catch (err) {
-        stopLoading();
-        $status.classList.add('hidden');
-        renderError(err.message || 'Network error');
-      } finally {
-        $run.disabled = false;
-        $run.textContent = 'Screen';
-      }
+    function findSaved(handle){ const k = norm(handle); return history.find(r => norm(r.handle) === k) || null; }
+    function upsert(data){
+      const k = norm(data.handle);
+      const rec = { ...data, screenedAt: Date.now() };
+      const i = history.findIndex(r => norm(r.handle) === k);
+      if(i >= 0) history[i] = rec; else history.push(rec);
+      // FIFO cap
+      if(history.length > MAX_SAVED) history = history.slice(history.length - MAX_SAVED);
+      persist();
+    }
+    function removeOne(handle){ const k = norm(handle); history = history.filter(r => norm(r.handle) !== k); persist(); renderSaved(); }
+    function clearAll(){
+      if(!history.length) return;
+      if(!confirm('Delete all saved results? This cannot be undone.')) return;
+      history = []; persist(); renderSaved();
     }
 
-    function renderError(msg, raw) {
-      $result.classList.remove('hidden');
-      $result.innerHTML = `
-        <div class="fade-up border border-red-300 bg-red-50 rounded-md p-5">
-          <div class="text-red-600 font-mono text-sm mb-1">ERROR</div>
-          <div class="text-qlv-text">${escapeHtml(msg)}</div>
-          ${raw ? `<details class="mt-3"><summary class="text-qlv-dim text-xs cursor-pointer font-mono">Raw model output</summary><pre class="mt-2 text-xs text-qlv-dim whitespace-pre-wrap font-mono">${escapeHtml(raw)}</pre></details>` : ''}
-        </div>`;
+    // ===== API =====
+    async function apiScreen(handle){
+      const res = await fetch('/api/screen', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ handle }) });
+      const data = await res.json();
+      if(!res.ok || data.error) throw new Error(data.error || `Failed (${res.status})`);
+      return data;
+    }
+    // returns { data, cached }
+    async function screenOrCache(handle, force){
+      if(!force){ const saved = findSaved(handle); if(saved) return { data: saved, cached: true }; }
+      const data = await apiScreen(handle);
+      upsert(data);
+      return { data, cached: false };
     }
 
-    function renderResult(data) {
-      const v = VERDICT[data.verdict] || VERDICT.MAYBE;
+    // ===== tabs =====
+    const $tabSingle=document.getElementById('tab-single'), $tabBatch=document.getElementById('tab-batch');
+    const $modeSingle=document.getElementById('mode-single'), $modeBatch=document.getElementById('mode-batch');
+    function setTab(which){
+      const s = which==='single';
+      $modeSingle.classList.toggle('hidden', !s); $modeBatch.classList.toggle('hidden', s);
+      $tabSingle.className='px-5 py-2 rounded-md text-sm font-semibold transition-colors '+(s?'bg-qlv-text text-white':'text-qlv-dim');
+      $tabBatch.className ='px-5 py-2 rounded-md text-sm font-semibold transition-colors '+(s?'text-qlv-dim':'bg-qlv-text text-white');
+    }
+    $tabSingle.onclick=()=>setTab('single'); $tabBatch.onclick=()=>setTab('batch');
 
-      const rows = FILTERS.map(([key, label, desc], idx) => {
-        const item = data.scores?.[key] || { score: 0, reasoning: '—' };
-        const dots = Array.from({ length: 5 }, (_, i) => `
-          <span class="w-1.5 h-4 rounded-sm ${i < item.score ? 'bg-qlv-blue' : 'bg-qlv-border'}"></span>
-        `).join('');
-        return `
-          <div class="grid grid-cols-[1fr_auto] gap-3 py-4 border-t border-qlv-border first:border-t-0 fade-up" style="animation-delay:${idx * 50}ms">
-            <div class="min-w-0">
-              <div class="flex items-baseline gap-3 mb-1">
-                <span class="text-xs font-mono text-qlv-dim w-4">0${idx + 1}</span>
-                <span class="font-medium text-qlv-text">${label}</span>
-                <span class="text-qlv-dim text-xs hidden sm:inline">· ${desc}</span>
-              </div>
-              <p class="text-qlv-body text-sm leading-relaxed pl-7">${escapeHtml(item.reasoning || '—')}</p>
-            </div>
-            <div class="flex flex-col items-end gap-1.5 pt-0.5">
-              <div class="flex gap-0.5">${dots}</div>
-              <span class="font-mono text-xs text-qlv-dim">${item.score}/5</span>
-            </div>
-          </div>
-        `;
+    // ===== single =====
+    const $handle=document.getElementById('handle'), $run=document.getElementById('run');
+    const $status=document.getElementById('status'), $statusText=document.getElementById('status-text'), $result=document.getElementById('result');
+    const LOADING=['Researching across platforms…','Reading the comment section…','Sniffing for monetisation signals…','Sizing the audience economy…','Tallying the 7 filters…'];
+    let loadTimer=null;
+
+    async function single(force){
+      const handle=$handle.value.trim(); if(!handle){$handle.focus();return;}
+      $run.disabled=true; $run.textContent='Screening…'; $result.classList.add('hidden'); $result.innerHTML='';
+      const saved = !force && findSaved(handle);
+      if(saved){ renderCard(saved, true); $run.disabled=false; $run.textContent='Screen'; return; }
+      $status.classList.remove('hidden'); let i=0; $statusText.textContent=LOADING[0];
+      loadTimer=setInterval(()=>{i=(i+1)%LOADING.length;$statusText.textContent=LOADING[i];},2200);
+      try{ const {data}=await screenOrCache(handle, true); renderCard(data, false); renderSaved(); }
+      catch(err){ $result.classList.remove('hidden'); $result.innerHTML=`<div class="border border-red-300 bg-red-50 rounded-md p-5"><div class="text-red-600 font-mono text-sm mb-1">ERROR</div><div class="text-qlv-text">${esc(err.message)}</div></div>`; }
+      finally{ clearInterval(loadTimer); $status.classList.add('hidden'); $run.disabled=false; $run.textContent='Screen'; }
+    }
+
+    function renderCard(data, cached){
+      const v=VERDICT[data.verdict]||VERDICT.MAYBE;
+      const rows=FILTERS.map(([key,label],idx)=>{
+        const it=data.scores?.[key]||{score:0,reasoning:'—'};
+        const dots=Array.from({length:5},(_,i)=>`<span class="w-1.5 h-4 rounded-sm ${i<it.score?'bg-qlv-blue':'bg-qlv-border'}"></span>`).join('');
+        return `<div class="grid grid-cols-[1fr_auto] gap-3 py-4 border-t border-qlv-border first:border-t-0"><div class="min-w-0"><div class="flex items-baseline gap-3 mb-1"><span class="text-xs font-mono text-qlv-dim w-4">0${idx+1}</span><span class="font-medium text-qlv-text">${label}</span><span class="text-qlv-dim text-xs hidden sm:inline">· ${FILTER_DESC[key]}</span></div><p class="text-qlv-body text-sm leading-relaxed pl-7">${esc(it.reasoning||'—')}</p></div><div class="flex flex-col items-end gap-1.5 pt-0.5"><div class="flex gap-0.5">${dots}</div><span class="font-mono text-xs text-qlv-dim">${it.score}/5</span></div></div>`;
       }).join('');
-
+      const savedBanner = cached
+        ? `<div class="px-6 py-2 bg-qlv-bg/60 text-xs font-mono text-qlv-dim flex items-center justify-between"><span>💾 Saved result — no new search.</span><button id="rescreen-single" class="text-qlv-blue hover:underline">Re-screen (costs)</button></div>` : '';
       $result.classList.remove('hidden');
-      $result.innerHTML = `
-        <!-- Verdict card -->
-        <div class="fade-up border border-qlv-border rounded-md bg-qlv-panel overflow-hidden mb-6 shadow-[0_8px_30px_rgba(20,30,50,0.06)]">
-          <div class="px-6 pt-6 pb-5 flex items-start justify-between gap-4 border-b border-qlv-border">
-            <div class="min-w-0">
-              <div class="text-qlv-dim text-xs font-mono uppercase tracking-[0.2em] mb-1">Verdict</div>
-              <div class="flex items-baseline gap-3 flex-wrap">
-                <span class="font-serif font-medium text-4xl ${v.label}">${v.glyph} ${data.verdict}</span>
-                <span class="text-qlv-dim font-mono text-sm truncate">${escapeHtml(data.handle || '')}</span>
-              </div>
-              <div class="text-qlv-body text-sm mt-2">${v.strap}</div>
-            </div>
-            <div class="text-right shrink-0">
-              <div class="text-qlv-dim text-xs font-mono uppercase tracking-[0.2em] mb-1">Total</div>
-              <div class="font-mono text-4xl font-bold text-qlv-text leading-none">
-                ${data.total}<span class="text-qlv-dim text-2xl font-normal">/35</span>
-              </div>
-            </div>
-          </div>
-          <div class="px-6 py-3 flex items-center justify-between text-xs font-mono text-qlv-dim">
-            <span>Bands · 🔴 &lt;22 · 🟡 22–27 · 🟢 28+</span>
-            <button id="copy-json" class="hover:text-qlv-blue transition-colors">Copy JSON</button>
-          </div>
+      $result.innerHTML=`<div class="fade-up border border-qlv-border rounded-md bg-qlv-panel overflow-hidden mb-6 shadow-[0_8px_30px_rgba(20,30,50,0.06)]">
+        ${savedBanner}
+        <div class="px-6 pt-6 pb-5 flex items-start justify-between gap-4 border-b border-qlv-border">
+          <div class="min-w-0"><div class="text-qlv-dim text-xs font-mono uppercase tracking-[0.2em] mb-1">Verdict</div>
+          <div class="flex items-baseline gap-3 flex-wrap"><span class="font-serif font-medium text-4xl ${v.label}">${v.glyph} ${data.verdict}</span><span class="text-qlv-dim font-mono text-sm truncate">${esc(data.handle||'')}</span></div>
+          <div class="text-qlv-body text-sm mt-2">${v.strap}</div></div>
+          <div class="text-right shrink-0"><div class="text-qlv-dim text-xs font-mono uppercase tracking-[0.2em] mb-1">Total</div><div class="font-mono text-4xl font-bold text-qlv-text leading-none">${data.total}<span class="text-qlv-dim text-2xl font-normal">/35</span></div></div>
         </div>
+        <div class="px-6 py-3 text-xs font-mono text-qlv-dim">Bands · 🔴 &lt;22 · 🟡 22–27 · 🟢 28+</div>
+      </div>
+      <div class="border border-qlv-border rounded-md bg-qlv-panel px-5 py-2">${rows}</div>`;
+      const rs=document.getElementById('rescreen-single'); if(rs) rs.onclick=()=>single(true);
+    }
+    $run.onclick=()=>single(false);
+    $handle.addEventListener('keydown', e=>{ if(e.key==='Enter') single(false); });
 
-        <!-- Filter breakdown -->
-        <div class="border border-qlv-border rounded-md bg-qlv-panel px-5 py-2">
-          ${rows}
-        </div>
-      `;
+    // ===== batch =====
+    const $handles=document.getElementById('handles'), $batchRun=document.getElementById('batch-run');
+    const $batchForce=document.getElementById('batch-force'), $batchProgress=document.getElementById('batch-progress');
+    function parseHandles(){ return [...new Set($handles.value.split('\n').map(s=>s.trim()).filter(Boolean))]; }
 
-      const $copy = document.getElementById('copy-json');
-      if ($copy) {
-        $copy.addEventListener('click', async () => {
-          try {
-            await navigator.clipboard.writeText(JSON.stringify(data, null, 2));
-            $copy.textContent = 'Copied ✓';
-            setTimeout(() => { $copy.textContent = 'Copy JSON'; }, 1500);
-          } catch {
-            $copy.textContent = 'Copy failed';
-          }
-        });
+    async function batchRun(){
+      const handles=parseHandles(); if(!handles.length){ $handles.focus(); return; }
+      const force=$batchForce.checked;
+      $batchRun.disabled=true; let newCount=0, cachedCount=0;
+      for(let i=0;i<handles.length;i++){
+        $batchProgress.textContent=`Screening ${i+1} / ${handles.length} — ${handles[i]}…`;
+        try{
+          const {cached}=await screenOrCache(handles[i], force);
+          cached ? cachedCount++ : newCount++;
+        }catch(err){
+          upsert({ handle:handles[i], error:true, total:0, verdict:'KILL', scores:{} });
+        }
+        renderSaved();
+        if(!force) await sleep(800); else await sleep(1000);
       }
+      const passes=history.filter(r=>r.verdict==='PASS'&&!r.error).length;
+      $batchProgress.textContent=`Done — ${newCount} new, ${cachedCount} loaded from saved. ${passes} PASS total.`;
+      $batchRun.disabled=false;
+    }
+    $batchRun.onclick=batchRun;
+
+    // ===== saved table =====
+    const $savedWrap=document.getElementById('saved-wrap'), $savedTable=document.getElementById('saved-table');
+    const $savedCount=document.getElementById('saved-count'), $savedMax=document.getElementById('saved-max');
+    document.getElementById('export-csv').onclick=exportCsv;
+    document.getElementById('clear-all').onclick=clearAll;
+    $savedMax.textContent=MAX_SAVED;
+
+    function sortedHistory(){
+      const order={PASS:0,MAYBE:1,KILL:2};
+      return [...history].sort((a,b)=> (order[a.verdict]??3)-(order[b.verdict]??3) || (b.total||0)-(a.total||0));
+    }
+    function renderSaved(){
+      $savedCount.textContent=history.length;
+      if(!history.length){ $savedWrap.classList.add('hidden'); return; }
+      $savedWrap.classList.remove('hidden');
+      const head=`<div class="grid grid-cols-[1fr_auto_auto_auto] gap-3 px-5 py-3 border-b border-qlv-border text-xs font-mono uppercase tracking-[0.15em] text-qlv-dim"><span>Handle</span><span class="text-right">Score</span><span class="text-right">Verdict</span><span></span></div>`;
+      const rows=sortedHistory().map((r,idx)=>{
+        if(r.error){
+          return `<div class="grid grid-cols-[1fr_auto_auto_auto] gap-3 px-5 py-3 border-b border-qlv-border last:border-b-0 items-center"><span class="font-mono text-sm text-qlv-text truncate">${esc(r.handle)}</span><span class="text-right font-mono text-sm text-qlv-dim">—</span><span class="text-right font-mono text-xs text-red-600">ERROR</span><button onclick="removeOne('${esc(norm(r.handle))}')" class="text-qlv-dim hover:text-red-600 text-sm">✕</button></div>`;
+        }
+        const v=VERDICT[r.verdict]||VERDICT.MAYBE;
+        const detail=FILTERS.map(([key,label])=>{const it=r.scores?.[key]||{score:0,reasoning:'—'};return `<div class="py-2 border-t border-qlv-border first:border-t-0"><div class="flex justify-between"><span class="font-medium text-qlv-text text-sm">${label}</span><span class="font-mono text-xs text-qlv-dim">${it.score}/5</span></div><p class="text-qlv-body text-xs mt-0.5">${esc(it.reasoning||'—')}</p></div>`;}).join('');
+        return `<div class="border-b border-qlv-border last:border-b-0">
+          <div class="grid grid-cols-[1fr_auto_auto_auto] gap-3 px-5 py-3 items-center">
+            <span class="font-mono text-sm text-qlv-text truncate cursor-pointer hover:text-qlv-blue" onclick="document.getElementById('sd-${idx}').classList.toggle('hidden')">${esc(r.handle)}</span>
+            <span class="text-right font-mono text-sm font-semibold text-qlv-text">${r.total}/35</span>
+            <span class="text-right font-mono text-xs font-semibold ${v.label}">${v.glyph} ${r.verdict}</span>
+            <button onclick="removeOne('${esc(norm(r.handle))}')" class="text-qlv-dim hover:text-red-600 text-sm" title="Remove">✕</button>
+          </div>
+          <div id="sd-${idx}" class="hidden px-5 pb-3">${detail}</div></div>`;
+      }).join('');
+      $savedTable.innerHTML=head+rows;
     }
 
-    function escapeHtml(str) {
-      return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;');
+    function exportCsv(){
+      if(!history.length) return;
+      const head=['Handle','Total','Verdict',...FILTERS.map(f=>f[1]),'ScreenedAt'];
+      const lines=[head.join(',')];
+      for(const r of sortedHistory()){
+        if(r.error){ lines.push([`"${r.handle}"`,'','ERROR',...FILTERS.map(()=>''),new Date(r.screenedAt||Date.now()).toISOString()].join(',')); continue; }
+        const scores=FILTERS.map(([key])=> (r.scores?.[key]?.score ?? ''));
+        lines.push([`"${r.handle}"`, r.total, r.verdict, ...scores, new Date(r.screenedAt||Date.now()).toISOString()].join(','));
+      }
+      const blob=new Blob([lines.join('\n')],{type:'text/csv'});
+      const url=URL.createObjectURL(blob);
+      const a=document.createElement('a'); a.href=url; a.download='pulse-saved.csv'; a.click();
+      URL.revokeObjectURL(url);
     }
 
-    $run.addEventListener('click', screen);
-    $handle.addEventListener('keydown', (e) => { if (e.key === 'Enter') screen(); });
-    $handle.focus();
+    // ===== init =====
+    loadHistory();
+    renderSaved();
   </script>
 </body>
 </html>
